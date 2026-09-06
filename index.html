@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Эстафета добра — поддержка материнства и детства</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <span class="logo">Эстафета&nbsp;добра</span>
+      <nav class="nav">
+        <a href="#about">О проекте</a>
+        <a href="#events">Мероприятия</a>
+        <a href="#help">Как помочь</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero wrap">
+      <div class="hero-text">
+        <h1>Забота передаётся из рук в руки.<br>Пусть эта эстафета не прервётся.</h1>
+        <p class="hero-lead">
+          Мы поддерживаем мам и детей, которым сейчас особенно нужна помощь —
+          через акции, мастер-классы и живое участие волонтёров.
+        </p>
+        <a href="#help" class="btn btn-primary">Присоединиться</a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="70" cy="230" r="46" fill="#C86B5C"/>
+          <circle cx="170" cy="150" r="60" fill="#7A8B6F"/>
+          <circle cx="250" cy="70" r="38" fill="#3A2530"/>
+          <path d="M108 210 Q140 170 150 155" stroke="#3A2530" stroke-width="3" fill="none" stroke-dasharray="6 8"/>
+          <path d="M210 120 Q235 95 245 85" stroke="#3A2530" stroke-width="3" fill="none" stroke-dasharray="6 8"/>
+        </svg>
+      </div>
+    </section>
+
+    <section id="about" class="about wrap">
+      <h2>О проекте</h2>
+      <p>
+        «Эстафета добра» — студенческая инициатива в поддержку материнства и детства.
+        Мы организуем благотворительные акции, творческие мастер-классы и берём шефство
+        над детскими домами, многодетными семьями и молодыми мамами, оказавшимися
+        в трудной жизненной ситуации.
+      </p>
+      <div class="about-stats">
+        <div class="stat"><strong>3</strong><span>направления помощи</span></div>
+        <div class="stat"><strong>10+</strong><span>волонтёров-студентов</span></div>
+        <div class="stat"><strong>1</strong><span>цель — быть рядом</span></div>
+      </div>
+    </section>
+
+    <section id="events" class="events">
+      <div class="wrap">
+        <h2>Мероприятия</h2>
+        <div class="event-grid" id="eventGrid"></div>
+      </div>
+    </section>
+
+    <section id="help" class="help wrap">
+      <h2>Как помочь</h2>
+      <ol class="steps">
+        <li>
+          <span class="step-num">1</span>
+          <div>
+            <h3>Выберите формат</h3>
+            <p>Стать волонтёром, передать вещи или принять участие в мастер-классе.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-num">2</span>
+          <div>
+            <h3>Оставьте заявку</h3>
+            <p>Заполните короткую форму ниже — мы свяжемся с вами в течение дня.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-num">3</span>
+          <div>
+            <h3>Присоединяйтесь к акции</h3>
+            <p>Мы пришлём дату, место и всё, что нужно взять с собой.</p>
+          </div>
+        </li>
+      </ol>
+
+      <form class="help-form" id="helpForm" action="https://formspree.io/f/mwlknbej" method="POST">
+        <div class="form-row">
+          <label for="name">Имя</label>
+          <input type="text" id="name" name="name" required placeholder="Как к вам обращаться">
+        </div>
+        <div class="form-row">
+          <label for="contact">Телефон или почта</label>
+          <input type="text" id="contact" name="contact" required placeholder="Для связи с вами">
+        </div>
+        <div class="form-row">
+          <label for="format">Чем хотите помочь</label>
+          <select id="format" name="format">
+            <option>Стать волонтёром</option>
+            <option>Передать вещи/игрушки</option>
+            <option>Провести мастер-класс</option>
+            <option>Другое</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="message">Комментарий</label>
+          <textarea id="message" name="message" rows="3" placeholder="Необязательно"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Отправить заявку</button>
+        <p class="form-status" id="formStatus" role="status"></p>
+      </form>
+    </section>
+
+  </main>
+
+  <footer id="contacts" class="site-footer">
+    <div class="wrap footer-inner">
+      <div>
+        <span class="logo logo-light">Эстафета&nbsp;добра</span>
+        <p>Студенческий проект в поддержку материнства и детства.</p>
+      </div>
+      <div class="footer-contacts">
+        <p>podderzka.materinstwa@gmail.com</p>
+        <p>+375 25 740 52 87</p>
+        <p>+375 44 597 30 08</p>
+      </div>
+    </div>
+  </footer>
+
+<script src="script.js"></script>
+</body>
+</html>

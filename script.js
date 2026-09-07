@@ -27,7 +27,7 @@ function renderEvents() {
   if (!grid) return;
 
   grid.innerHTML = events.map(ev => `
-    <article class="event-card">
+    <article class="event-card reveal">
       <time>${ev.date}</time>
       <h3>${ev.title}</h3>
       <p>${ev.text}</p>
@@ -81,7 +81,65 @@ function initForm() {
   });
 }
 
+function initNav() {
+  const toggle = document.getElementById('navToggle');
+  const nav = document.getElementById('siteNav');
+  if (!toggle || !nav) return;
+
+  toggle.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  // Закрывать меню при клике на ссылку
+  nav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+
+function animateCount(el) {
+  const target = parseInt(el.dataset.count, 10);
+  const suffix = el.dataset.suffix || '';
+  const duration = 900;
+  const start = performance.now();
+
+  function step(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    const value = Math.round(target * progress);
+    el.textContent = value + suffix;
+    if (progress < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+function initReveal() {
+  const items = document.querySelectorAll('.reveal');
+  if (!items.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+
+        // Если это блок статистики — запускаем счётчик
+        if (entry.target.id === 'statsBlock') {
+          entry.target.querySelectorAll('strong[data-count]').forEach(animateCount);
+        }
+
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  items.forEach(item => observer.observe(item));
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   renderEvents();
   initForm();
+  initNav();
+  initReveal();
 });

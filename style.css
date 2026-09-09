@@ -19,8 +19,14 @@ section[id], footer[id] {
 body {
   margin: 0;
   background-color: var(--color-bg);
-  background-image: radial-gradient(rgba(58, 37, 48, 0.06) 1.5px, transparent 1.5px);
-  background-size: 24px 24px;
+  background-image:
+    radial-gradient(rgba(58, 37, 48, 0.06) 1.5px, transparent 1.5px),
+    radial-gradient(ellipse 900px 500px at 15% 0%, rgba(122, 139, 111, 0.10), transparent 60%),
+    radial-gradient(ellipse 800px 600px at 100% 20%, rgba(200, 107, 92, 0.10), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 0% 80%, rgba(58, 37, 48, 0.06), transparent 60%);
+  background-size: 24px 24px, auto, auto, auto;
+  background-repeat: repeat, no-repeat, no-repeat, no-repeat;
+  background-attachment: fixed, fixed, fixed, fixed;
   color: var(--color-ink);
   font-family: var(--font-body);
   line-height: 1.55;
@@ -46,6 +52,18 @@ h3 { font-size: 1.15rem; margin-bottom: 0.3em; }
 p { margin: 0 0 1em; max-width: 62ch; }
 
 a { color: inherit; }
+
+/* Scroll progress */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: var(--color-accent);
+  z-index: 100;
+  transition: width 0.1s ease-out;
+}
 
 /* Header */
 .site-header {
@@ -120,6 +138,11 @@ a { color: inherit; }
 }
 
 .nav a:hover { border-color: var(--color-accent); }
+
+.nav a.is-active {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
 
 /* Buttons */
 .btn {
@@ -485,6 +508,38 @@ a { color: inherit; }
     transform: none;
     transition: none;
   }
+}
+
+/* Back to top */
+.back-to-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: var(--color-white);
+  border: none;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(58, 37, 48, 0.25);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 20;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  transform: translateY(-2px);
 }
 
 /* Footer */
